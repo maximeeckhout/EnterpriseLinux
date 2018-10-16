@@ -25,16 +25,31 @@
         groups:
           - wheel
         password: '$6$qTNUcoNx3p.5$JAOLjzO7C/tlN.122wvQZfZXKUCpGzvXPTlWNTreRmmhgMkrgCGVzvfKxBEJ61CHx/p1XlMPFcU.NhP7KlBeE/'
-
     rhbase_repo_gpgcheck: false
     rhbase_repo_installonly_limit: 2
     rhbase_motd: true
     rhbase_hosts_entry: true
     rhbase_repositories:
       - epel-release
-    rhbase_update: false
+    rhbase_update: true
+    mariadb_bind_address: '0.0.0.0'
+    mariadb_root_password: root
+    mariadb_databases:
+      - name: wordpress_db
+    mariadb_users:
+      - name: wordpress_usr
+        password: root
+        priv: wordpress_db.*:ALL
+        host: '192.0.2.%'
+    wordpress_database_host: 192.0.2.49
+    wordpress_database: wordpress_db
+    wordpress_user: wordpress_usr
+    wordpress_password: root
   roles:
     - bertvv.rh-base
+    - bertvv.httpd
+    - bertvv.mariadb
+    - bertvv.wordpress
 
 
 
