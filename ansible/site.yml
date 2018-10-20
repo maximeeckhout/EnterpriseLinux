@@ -2,48 +2,23 @@
 ---
 - hosts: pu004
   become: true
-#  pre_tasks:
-#    - name: Include distro-specific variables
-#      include_vars: "vars-{{ ansible_distribution }}.yml"
-  vars:
-    rhbase_ssh_user: maxim
-    rhbase_ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDnw7NjkgmlGQyE/DvLFcl35ifMTL+UjqqY1eNBIkYM3aWh5k/YvbPIfjg0SMgKbPsRpLJyYj+06ARePZD/ZMgQDrrSIcDvtLQd9yPHUus1Hc6vpAIj35CF26TuqFEFjnJeptJuDApKAD4jfq5SfqK5kipxvjfFX+cil0ooctyawBZ+TudrPm2xnGmN+iWM8m/cHkpafkjF0Z0/oF8276GGluDxZFzPjjodxuqryQZ6LDsdwXyzCJzPC2r4XajfASFpGxRT/THxjxMbxx7exhGHr3vdqadMvHmClzuN0hV7m99t8KKf/9PW+++rLs3Wq4oF4MQKeg7XrG+rh8QFrAM3 meeckhout@Dell-Maxim
-'
-    rhbase_firewall_allow_services:
-      - http
-      - https
-    rhbase_firewall_allow_ports:
-      - 8080/tcp
-      - 53/udp
-    rhbase_firewall_interfaces:
-      - enp0s3
-      - enp0s8
-    rhbase_start_services:
-      - sshd
-    rhbase_users:
-      - name: maxim
-        groups:
-          - wheel
-        password: '$6$qTNUcoNx3p.5$JAOLjzO7C/tlN.122wvQZfZXKUCpGzvXPTlWNTreRmmhgMkrgCGVzvfKxBEJ61CHx/p1XlMPFcU.NhP7KlBeE/'
-    rhbase_motd: true
-    rhbase_hosts_entry: true
-    rhbase_repositories:
-      - epel-release
-    httpd_ssl_certificate_key_file: 'ca.key'
-    httpd_ssl_certificate_file: 'ca.crt'
-    mariadb_root_password: 'root'
-    mariadb_databases:
-      - name: wordpress_db
-    mariadb_users:
-      - name: wordpress_usr
-        password: wordpress
-        priv: 'wordpress_db.*:ALL,GRANT'
-    wordpress_database: wordpress_db
-    wordpress_user: wordpress_usr
-    wordpress_password: wordpress
-
+  pre_tasks:
+    - name: Include rh_base variables
+      include_vars: "vars/var_rh-base.yml"
+    - name: Include httpd variables
+      include_vars: "vars/var_httpd.yml"
+    - name: Include mariadb variables
+      include_vars: "vars/var_mariadb.yml"
+    - name: Include wordpress variables
+      include_vars: "vars/var_wordpress.yml"
   roles:
     - bertvv.rh-base
     - bertvv.httpd
     - bertvv.mariadb
     - bertvv.wordpress
+
+#- hosts: pu001
+#  become: true
+
+#- hosts:pu002
+#  become: true
