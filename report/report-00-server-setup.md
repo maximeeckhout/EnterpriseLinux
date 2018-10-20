@@ -41,7 +41,7 @@ Opmerking: in eerste instantie was ik begonnen met de opdracht zonder de ansible
 Output van het testscript:
 
 ```
-[maxim@pu004 ~]$ /vagrant/test/runbats.sh 
+[maxim@pu004 ~]$ /vagrant/test/runbats.sh
 Running test /vagrant/test/common.bats
  ✓ SELinux should be set to 'Enforcing'
  ✓ Firewall should be enabled and running
