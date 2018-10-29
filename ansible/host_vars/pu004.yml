@@ -1,0 +1,12 @@
+httpd_ssl_certificate_key_file: 'ca.key'
+httpd_ssl_certificate_file: 'ca.crt'
+mariadb_root_password: 'root'
+mariadb_databases:
+  - name: wordpress_db
+mariadb_users:
+  - name: wordpress_usr
+    password: wordpress
+    priv: 'wordpress_db.*:ALL'
+wordpress_database: wordpress_db
+wordpress_user: wordpress_usr
+wordpress_password: wordpress

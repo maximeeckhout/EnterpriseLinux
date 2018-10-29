@@ -3,15 +3,6 @@
 # LAMP
 - hosts: pu004
   become: true
-  pre_tasks:
-#    - name: Include rh_base variables
-#      include_vars: "vars/var_rh-base.yml"
-    - name: Include httpd variables
-      include_vars: "vars/var_httpd.yml"
-    - name: Include mariadb variables
-      include_vars: "vars/var_mariadb.yml"
-    - name: Include wordpress variables
-      include_vars: "vars/var_wordpress.yml"
   roles:
     - bertvv.rh-base
     - bertvv.httpd
@@ -21,63 +12,6 @@
 # MasterDNS
 - hosts: pu001
   become: true
-  vars:
-    bind_zone_dir: '/var/named/'
-    bind_zone_file_mode: '0660'
-    bind_allow_query:
-      - 'any'
-    bind_allow_recursion:
-      - 'any'
-    bind_listen_ipv4:
-      - 'any'	 
-    bind_query_log: 'data/query'
-    bind_zone_master_server_ip: 192.0.2.10
-    bind_zone_domains:
-      - name: 'avalon.lan'
-        networks:
-          - '192.0.2'
-          - '172.16'
-        name_servers:
-          - pu001
-          - pu002
-        hosts:
-          - name: 'pu001'
-            ip: 192.0.2.10
-            aliases:
-              - ns1
-          - name: 'pu002'
-            ip: 192.0.2.11
-            aliases:
-              - ns2
-          - name: 'pu003'
-            ip: 192.0.2.20
-            aliases:
-              - mail
-          - name: 'pu004'
-            ip: 192.0.2.50
-            aliases:
-              - www
-          - name: 'pr001'
-            ip: 172.16.0.2
-            aliases:
-              - dhcp
-          - name: 'pr002'
-            ip: 172.16.0.3
-            aliases:
-              - directory
-          - name: 'pr010'
-            ip: 172.16.0.10
-            aliases:
-              - inside
-          - name: 'pr011'
-            ip: 172.16.0.11
-            aliases:
-              - files
-        mail_servers:
-          - name: pu003
-            preference: 10
-    rhbase_firewall_allow_services:
-      - dns    
   roles:
     - bertvv.rh-base
     - bertvv.bind
@@ -85,18 +19,12 @@
 #SlaveDNS
 - hosts: pu002
   become: true
-  vars:
-    bind_listen_ipv4:
-      - 192.0.2.11
-    bind_allow_query: ['any']
-    bind_zone_master_server_ip: 192.0.2.10
-    bind_zone_domains:
-      - name: avalon.lan
-        networks:
-          - '192.0.2'
-          - '172.16'
-    rhbase_firewall_allow_services:
-      - dns
   roles:
     - bertvv.rh-base
     - bertvv.bind
+
+- hosts: pr011
+  become: true
+  roles:
+    - bertvv.samba
+    - bertvv.vsftpd

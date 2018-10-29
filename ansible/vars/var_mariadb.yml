@@ -1,7 +1,0 @@
-mariadb_root_password: 'root'
-mariadb_databases:
-  - name: wordpress_db
-mariadb_users:
-  - name: wordpress_usr
-    password: wordpress
-    priv: 'wordpress_db.*:ALL'
