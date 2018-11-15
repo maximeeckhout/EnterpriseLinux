@@ -8,8 +8,8 @@
 # Variables
 #
 sut_ip=172.16.0.11   # IP of the System Under Test
-admin_user=bert      # User with admin privileges
-admin_password=bert
+admin_user=maxim     # User with admin privileges
+admin_password=maxim
 testfile="tst${RANDOM}"
 
 # Useful return codes
@@ -117,13 +117,11 @@ assert_no_write_access() {
 # Configuration
 
 @test 'VSFTPD configuration should be syntactically correct' {
-  # skip # slow test
   run sudo vsftpd -olisten=NO /etc/vsftpd/vsftpd.conf
   [ -z "${output}" ]
 }
 
 @test 'Anonymous user should not be able to see shares' {
-  # skip #slow test
   run curl ftp://${sut_ip}/
   [ "${curl_err_failed_to_log_in}" -eq "${status}" ]
 }
@@ -167,7 +165,6 @@ assert_no_write_access() {
 }
 
 @test 'read access for share ‘management’' {
-  skip
   #                      Share      User          Password
   assert_no_read_access  management alexanderd    alexanderd
   assert_no_read_access  management anc           anc
@@ -186,7 +183,6 @@ assert_no_write_access() {
 }
 
 @test 'write access for share ‘management’' {
-  skip
   #                      Share      User          Password
   assert_no_write_access management alexanderd    alexanderd
   assert_no_write_access management anc           anc
@@ -205,7 +201,6 @@ assert_no_write_access() {
 }
 
 @test 'read access for share ‘technical’' {
-  skip
   #                      Share      User          Password
   assert_read_access     technical  alexanderd    alexanderd
   assert_read_access     technical  anc           anc
@@ -224,7 +219,6 @@ assert_no_write_access() {
 }
 
 @test 'write access for share ‘technical’' {
-  skip
   #                      Share      User          Password
   assert_write_access    technical  alexanderd    alexanderd
   assert_write_access    technical  anc           anc
@@ -243,7 +237,6 @@ assert_no_write_access() {
 }
 
 @test 'read access for share ‘sales’' {
-  skip
   #                      Share      User          Password
   assert_no_read_access  sales      alexanderd    alexanderd
   assert_no_read_access  sales      anc           anc
@@ -262,7 +255,6 @@ assert_no_write_access() {
 }
 
 @test 'write access for share ‘sales’' {
-  skip
   #                      Share      User          Password
   assert_no_write_access sales      alexanderd    alexanderd
   assert_no_write_access sales      anc           anc
@@ -281,7 +273,6 @@ assert_no_write_access() {
 }
 
 @test 'read access for share ‘it’' {
-  skip
   #                      Share      User          Password
   assert_no_read_access  it         alexanderd    alexanderd
   assert_no_read_access  it         anc           anc
@@ -300,7 +291,6 @@ assert_no_write_access() {
 }
 
 @test 'write access for share ‘it’' {
-  skip
   #                      Share      User          Password
   assert_no_write_access it         alexanderd    alexanderd
   assert_no_write_access it         anc           anc

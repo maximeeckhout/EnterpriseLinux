@@ -3,7 +3,6 @@
 - Student name: Maxim Eeckhout
 - Github repo: <https://github.com/HoGentTIN/elnx-1819-sme-maximeeckhout>
 
-Describe the goals of the current iteration/assignment in a short sentence.
 Omschrijving assingment02:
 Opzetten van een Master DNS en Slave DNS.
 

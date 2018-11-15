@@ -53,4 +53,4 @@ bind_zone_domains:
       - name: pu003
         preference: 10
 rhbase_firewall_allow_services:
-  - dns    
+  - dns

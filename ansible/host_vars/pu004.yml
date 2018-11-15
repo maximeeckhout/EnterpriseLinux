@@ -1,3 +1,6 @@
+rhbase_firewall_allow_services:
+  - http
+  - https
 httpd_ssl_certificate_key_file: 'ca.key'
 httpd_ssl_certificate_file: 'ca.crt'
 mariadb_root_password: 'root'

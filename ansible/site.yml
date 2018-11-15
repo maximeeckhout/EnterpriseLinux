@@ -23,8 +23,11 @@
     - bertvv.rh-base
     - bertvv.bind
 
+# Fileserver
 - hosts: pr011
   become: true
   roles:
+    - bertvv.rh-base
     - bertvv.samba
     - bertvv.vsftpd
+

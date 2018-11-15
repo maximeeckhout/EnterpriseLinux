@@ -59,9 +59,14 @@ cp ca.key /vagrant/ansible/files/
 cp ca.csr /vagrant/ansible/files/
 ```
 
-
 ## Checklist network configuration
 
 1. Is the IP-adress correct? `ip a`
 2. Is the router/default gateway correct? `ip r -n`
 3. Is a DNS-server available? `cat /etc/resolv.conf`
+
+## Create SHA512 password hashes on command line
+
+```
+meeckhout@Dell-Maxim:~$ mkpasswd -m sha-512 
+```
