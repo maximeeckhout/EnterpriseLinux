@@ -19,6 +19,71 @@ Make sure to write clean Markdown code, so your report looks good and is clearly
 
 The test report is a transcript of the execution of the test plan, with the actual results. Significant problems you encountered should also be mentioned here, as well as any solutions you found. The test report should clearly prove that you have met the requirements.
 
+```
+[vagrant@pr011 ~]$ sudo /vagrant/test/runbats.sh
+Running test /vagrant/test/common.bats
+ ✓ SELinux should be set to 'Enforcing'
+ ✓ Firewall should be enabled and running
+ ✓ EPEL repository should be available
+ ✓ Bash-completion should have been installed
+ ✓ bind-utils should have been installed
+ ✓ Git should have been installed
+ ✓ Nano should have been installed
+ ✓ Tree should have been installed
+ ✓ Vim-enhanced should have been installed
+ ✓ Wget should have been installed
+ ✓ Admin user maxim should exist
+ ✓ An SSH key should have been installed for maxim
+ ✓ Custom /etc/motd should have been installed
+
+13 tests, 0 failures
+Running test /vagrant/test/pr011/samba.bats
+ ✓ The ’nmblookup’ command should be installed
+ ✓ The ’smbclient’ command should be installed
+ ✓ The Samba service should be running
+ ✓ The Samba service should be enabled at boot
+ ✓ The WinBind service should be running
+ ✓ The WinBind service should be enabled at boot
+ ✓ The SELinux status should be ‘enforcing’
+ ✓ Samba traffic should pass through the firewall
+ ✓ Check existence of users
+ ✓ Checks shell access of users
+ ✓ Samba configuration should be syntactically correct
+ ✓ NetBIOS name resolution should work
+ ✓ read access for share ‘public’
+ ✓ write access for share ‘public’
+ ✓ read access for share ‘management’
+ ✓ write access for share ‘management’
+ ✓ read access for share ‘technical’
+ ✓ write access for share ‘technical’
+ ✓ read access for share ‘sales’
+ ✓ write access for share ‘sales’
+ ✓ read access for share ‘it’
+ ✓ write access for share ‘it’
+
+22 tests, 0 failures
+Running test /vagrant/test/pr011/vsftp.bats
+ ✓ VSFTPD service should be running
+ ✓ VSFTPD service should be enabled at boot
+ ✓ The ’curl’ command should be installed
+ ✓ The SELinux status should be ‘enforcing’
+ ✓ FTP traffic should pass through the firewall
+ ✓ VSFTPD configuration should be syntactically correct
+ ✓ Anonymous user should not be able to see shares
+ ✓ read access for share ‘public’
+ ✓ write access for share ‘public’
+ ✓ read access for share ‘management’
+ ✓ write access for share ‘management’
+ ✓ read access for share ‘technical’
+ ✓ write access for share ‘technical’
+ ✓ read access for share ‘sales’
+ ✓ write access for share ‘sales’
+ ✓ read access for share ‘it’
+ ✓ write access for share ‘it’
+
+17 tests, 0 failures
+```
+
 ## Resources
 
 List all sources of useful information that you encountered while completing this assignment: books, manuals, HOWTO's, blog posts, etc.

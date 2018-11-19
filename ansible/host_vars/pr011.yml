@@ -126,10 +126,12 @@ samba_shares:
     write_list: +users
     valid_users: +users
     setype: public_content_t
+    directory_mode: '0770'
   - name: it
     group: it
     write_list: +it
     valid_users: +management,+it
+    directory_mode: '0770'
   - name: management
     group: management
     write_list: +management
@@ -139,24 +141,17 @@ samba_shares:
     group: technical
     write_list: +technical
     valid_users: +users
+    directory_mode: '0775'
   - name: sales
     group: sales
     write_list: +sales
     valid_users: +sales,+management
+    directory_mode: '0770'
 
 vsftpd_anonymous_enable: false 
 vsftpd_local_enable: true
 vsftpd_write_enable: true
 vsftpd_local_root: /srv/shares
 
-vsftpd_extra_permissions:
-  - folder: "/srv/shares/sales"
-    entity: "management"
-    etype: "group"
-    permissions: "r--"
-  - folder: "/srv/shares/it"
-    entity: "management"
-    etype: "group"
-    permissions: "r--"
 
 

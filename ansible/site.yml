@@ -23,11 +23,34 @@
     - bertvv.rh-base
     - bertvv.bind
 
-# Fileserver
+# FileServer
 - hosts: pr011
   become: true
+  post_tasks:
+    - name: ACL for the share IT
+      acl:
+        path: /srv/shares/it
+        entity: management
+        etype: group
+        permissions: rx
+        state: present
+    - name: ACL for the share Sales
+      acl:
+        path: /srv/shares/sales
+        entity: management
+        etype: group
+        permissions: rx
+        state: present
+    - name: Restart Vsftpd
+      shell: systemctl restart vsftpd
   roles:
     - bertvv.rh-base
     - bertvv.samba
     - bertvv.vsftpd
 
+# DHCPServer
+- hosts: pr001
+  become: true
+  roles:
+    - bertvv.rh-base
+    - bertvv.dhcp
