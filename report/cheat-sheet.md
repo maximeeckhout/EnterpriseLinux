@@ -68,5 +68,11 @@ cp ca.csr /vagrant/ansible/files/
 ## Create SHA512 password hashes on command line
 
 ```
-meeckhout@Dell-Maxim:~$ mkpasswd -m sha-512 
+meeckhout@Dell-Maxim:~$ mkpasswd -m sha-512
+```
+
+## Get a new DHCP Lease
+```
+sudo dhclient -r
+sudo dhclient
 ```

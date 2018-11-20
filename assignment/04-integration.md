@@ -29,7 +29,7 @@ Known hosts should receive a reserved IP address based on their MAC address. Hos
 | 172.16.192.1   | 172.16.255.253 | Hosts with dynamic IP (*)                |
 | 172.16.255.254 | -              | Gateway                                  |
 
-(*) Only these IP addresses are assigned by the DHCP server!
+(*) Only these IP addresses are assigned by the DHCP server!*
 
 ### Router
 
