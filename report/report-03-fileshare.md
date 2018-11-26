@@ -3,7 +3,11 @@
 - Student name: Maxim Eeckhout
 - Github repo: <https://github.com/HoGentTIN/elnx-1819-sme-maximeeckhout>
 
-Describe the goals of the current iteration/assignment in a short sentence.
+Omschrijving assignment03:
+- Opzetten van Samba file server
+- Opzetten van FTP Server met Vsftpd
+- Toegang tot bestanden en mappen beheren
+- Gebruik maken van SELinux
 
 ## Test plan
 
@@ -14,6 +18,15 @@ How are you going to verify that the requirements are met? The test plan is a de
 Describe *in detail* how you completed the assignment, with main focus on the "manual" work. It is of course not necessary to copy/paste your code in this document, but you can refer to it with a hyperlink.
 
 Make sure to write clean Markdown code, so your report looks good and is clearly structured on Github.
+
+* Toevoegen van pr011 aan ```vagrant-hosts.yml```
+* Toevoegen van pr011 aan ```site.yml``` en toevoegen van de rollen:
+  - bertvv.rh-base
+  - bertvv.samba
+  - bertvv.vsftpd
+* Installeren van alle ansible rollen.
+* Variabelen aanpassen van de rollen
+
 
 ## Test report
 
@@ -86,4 +99,5 @@ Running test /vagrant/test/pr011/vsftp.bats
 
 ## Resources
 
-List all sources of useful information that you encountered while completing this assignment: books, manuals, HOWTO's, blog posts, etc.
+* <https://galaxy.ansible.com/bertvv/vsftpd>
+* <https://galaxy.ansible.com/bertvv/samba>

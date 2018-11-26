@@ -59,14 +59,9 @@ Running test /vagrant/test/pu004/lamp.bats
  ✓ MariaDB should not have anonymous users
 
 15 tests, 0 failures
-
 ```
 
-
-s
 ## Resources
-
-List all sources of useful information that you encountered while completing this assignment: books, manuals, HOWTO's, blog posts, etc.
 
 * <https://mariadb.com/kb/en/library/grant/>
 * <https://www.cyberciti.biz/faq/how-to-show-list-users-in-a-mysql-mariadb-database/>
