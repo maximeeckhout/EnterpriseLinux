@@ -202,7 +202,7 @@ $ sudo named-checkconf /etc/named.conf
 $ sudo named-checkzone linuxlab.lan /var/named/linuxlab.lan
 $ sudo named-checkzone 15.168.192.in-addr.arpa \ /var/named/15.168.192.in-addr.arpa
 ```
-* Logs bekijken
+* Logs bekijken (best in andere terminal)
 ```
 $ sudo rndc querylog on
 $ sudo journalctl -l -f -u named.service
@@ -210,8 +210,20 @@ $ sudo systemctl status named
 ```
 * DNS antwoord correct
 ```
-$ dig XXXX @192.168.56.42
+$ dig 192.168.10.10 @192.168.56.42
 ```
+* DNS antwoord correct (reverse lookup)
+```
+$ dig -x www.test.be  @192.168.56.42
+```
+Opmerkingen:
+* FQDN moeten eindigen met een "." => "example.com."
+* named.conf verwachtte waarden:
+  * listen-on port 53 { 127.0.0.1; **192.168.1.101;**}; // **Master** DNS IP
+  * allow-query     { localhost; **192.168.1.0/24;**}; // IP Range
+  *  allow-transfer{ localhost; **192.168.1.102;** };   // **Slave** DNS IP 
+* Zone naamging => IP-address omdraaien en netwerkgedeelte weglaten
+  * 192.168.10.0/24 => 10.168.192.XXXX
 
 #### Fouten in deze fase
 | Fout    | Oplossing |
@@ -222,8 +234,6 @@ $ dig XXXX @192.168.56.42
 | ...     |X          |
 
 ## End result
-
-
 
 ## Resources
 
