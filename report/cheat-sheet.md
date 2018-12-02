@@ -8,6 +8,21 @@
 | Task                | Command |
 | :---                | :---    |
 | Query IP-adress(es) | `ip a`  |
+| See Ports | `cat /etc/services`  |
+| See Users / Groups | `cat /etc/group`  |
+
+## Keyboard shortcuts
+
+| Task                | Command |
+| :---                | :---    |
+| Recall the last command matching the characters you provide. Press this shortcut and start typing to search your bash history for a command.| CTR + R |
+ | Clear the screen.  | CTR + L |
+
+## Vim
+| Task                | Command |
+| :---                | :---    |
+| Go to a specific line (ex: line 8)| 8gg |
+
 
 ## Git workflow
 
@@ -76,3 +91,23 @@ meeckhout@Dell-Maxim:~$ mkpasswd -m sha-512
 sudo dhclient -r
 sudo dhclient
 ```
+
+## SElinux
+
+| Action                     | Command                           |
+| :---                       | :---                              |
+| List all booleans          | `getsebool -a`                    |
+| Set boolean (until reboot) | `setsebool BOOLEAN VALUE`         |
+| List context of files      | `ls -Z`                                 |
+| Reset file context to default                    | `restorecon -v FILE`                    |
+| Reset directory context to default (recursively) | `restorecon -v -R DIR`                  |
+
+
+## VyOS
+
+| Action             | Command                        |
+| :---               | :---                           |
+| IP configuration   | `show interfaces`              |
+| Routing            | `show ip route`                |
+| Show configuration | `show`                         |
+| Show log           | `monitor log`, `show log tail` |
