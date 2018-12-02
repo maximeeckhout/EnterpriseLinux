@@ -4,9 +4,11 @@
 - Github repo: <https://github.com/HoGentTIN/elnx-1819-sme-maximeeckhout>
 
 Omschrijving assingment01:
-Opzetten van een LAMP (Apache,MariaDB,PHP) op de server en Wordpress installeren.
+Opzetten van een LAMP (Linux met Apache,MariaDB,PHP) op de server en Wordpress installeren.
 
 ## Test plan
+
+Opmerking: Destroy de VM voor het uitvoeren van de testen. 
 
 Apache :
 * De Apache-test pagina zou zichtbaar moeten zijn als je in de host-browser naar het IP-adres van de VM gaat.
@@ -26,7 +28,28 @@ Runnen van de automated tests.
 
 * Apache, MariaDB en Wordpress installeren door de rollen 'bertvv.httpd','bertvv.mariadb'en ''bertvv.wordpress'' toe te voegen aan 'site.yml'-file
 * Runnen van het 'role-deps.sh' script zodat deze rollen geinstalleerd worden.
-* Vervolgens moesten enkele variabelen aangepast om alles werkende te krijgen.
+* Vervolgens moesten enkele variabelen aangepast om alles werkende te krijgen:
+  * Toevoegen van services aan de firewall:
+    * HTTP
+    * HTTPS
+  * MariaDB Root pass en user instellen
+  * Wordpress databank en user (met wachtwoord) aanmaken
+  * Certificaat instellen (via host):
+    ```
+    # Generate private key
+    openssl genrsa -out ca.key 2048
+
+    # Generate CSR
+    openssl req -new -key ca.key -out ca.csr
+
+    # Generate Self Signed Key
+    openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt
+
+    # Copy the files to the correct locations
+    cp ca.crt /vagrant/ansible/files/
+    cp ca.key /vagrant/ansible/files/
+    cp ca.csr /vagrant/ansible/files/
+    ```
 
 ## Test report
 
@@ -37,6 +60,32 @@ Problemen:
 ```
 [pu004] GuestAdditions versions on your host (5.2.20) and guest (5.2.18) do not match.
 ```
+
+Apache:
+* Apache website bereikbaar via host: CHECK
+* Apache serive is actief:
+  * Commando: ```sudo systemctl status httpd.service```
+  * CHECK
+* De site is bereikbaar: CHECK
+
+MariaDB:
+* Wordpress kan gebruik maken van de database via de aangemaakte user: CHECK
+* Controleren of er een user aanwezig is in de databank:
+```
+ mysql -u root -p  //inloggen bij de databank
+ > Select user, host from mysql.user; //users opvragen in de databank
+```
+
+PHP:
+* Aanmaken van een bestand in ```/var/www/html/index.php```
+* Inhoud bestand:
+```
+<?php
+  phpinfo();
+?>
+```
+* Als je via host browser naar deze pagina gaat krijg je de PHP-info pagina
+
 
 Output van het testscript:
 ```

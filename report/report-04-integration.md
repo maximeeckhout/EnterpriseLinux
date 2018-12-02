@@ -9,6 +9,8 @@ Omschrijving assignment04:
 
 ## Test plan
 
+Opmerking: Destroy de VM voor het uitvoeren van de testen.
+
 - Opzetten van een virtuele machine met 2 host-only netwerk interfaces (beide verbonden met het host-only netwerk 172.16.0.0./16)
 - Onthouden van 1 van de 2 MAC adressen van de interfaces
 - VM opstarten en controleren welk IP-address wordt toegekend aan welke interface

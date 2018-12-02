@@ -8,7 +8,14 @@ Opzetten van een Master DNS en Slave DNS.
 
 ## Test plan
 
-How are you going to verify that the requirements are met? The test plan is a detailed checklist of actions to take, including the expected result for each action, in order to prove your system meets the requirements. Part of this is running the automated tests, but it is not always possible to validate *all* requirements throught these tests.
+Opmerking: Destroy de VM voor het uitvoeren van de testen.
+
+MasterDNS/SlaveDNS:
+1. Start de VM op
+2. Log in via ssh
+3. Pas de variabelen aan in de testen
+4. Run de testen ('test/runbats.sh')
+5. Testen of het dig commando werkt bij beide servers
 
 ## Procedure/Documentation
 
@@ -39,7 +46,12 @@ Running test /vagrant/test/pu001/masterdns.bats
  ✓ Alias lookups private servers
  ✓ NS record lookup
  ✓ Mail server lookup
+```
 
+Dig Commando:
+```
+dig @192.0.2.10 pu004.avalon.lan
+dig @192.0.2.11 pu004.avalon.lan
 ```
 
 ## Resources
