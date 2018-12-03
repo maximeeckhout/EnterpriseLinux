@@ -26,10 +26,10 @@ In deze fase wordt de netwerk hardware getest en kijken we of er een IP-address 
 
 | Test                                      | Status      |
 | :---                                      | :---        |
-| Staat de machine aan                      |          X   |
-| Kabel aangesloten (VirtualBox)             |        X     |
-| Correcte netwerkinstellingen (VirtualBox) |       X      |
-| Interface is up (3)  |     X        |
+| Staat de machine aan                      | CHECK           |
+| Kabel aangesloten (VirtualBox)             | CHECK     |
+| Correcte netwerkinstellingen (VirtualBox) | CHECK     |
+| Interface is up (3)  |    FOUT => interface is down       |
 
 #### Kabel aangesloten
 * VirtualBox > VM > Machine Tools > Settings > Network > Advanced > Cable Connected
@@ -48,10 +48,8 @@ In deze fase wordt de netwerk hardware getest en kijken we of er een IP-address 
 #### Fouten in deze fase
 | Fout    | Oplossing |
 | :---    | :---      |
-| Fout 1  |X          |
-| Fout 2  |X          |
-| Fout 3  |X          |
-| ...     |X          |
+| Fout 1  | Interface is down          |
+
 
 ### Phase 2: Internet layer
 
@@ -59,12 +57,12 @@ In deze fase wordt getest of het IP-address corect toegekend is en of de default
 
 | Test                                      | Status      |
 | :---                                      | :---        |
-| Configuratie IP correct                   | X            |
-| IP-address is de verwachtte waarde        | X            |
-| Default Gateway ingesteld en correct      | X            |
-| DNS ingesteld en correct                  | X            |
-| VM bereikbaar van host                    | X             |
-| Controleren DNS name resolution          | X             |
+| Configuratie IP correct                   | FOUT            |
+| IP-address is de verwachtte waarde        | CHECK            |
+| Default Gateway ingesteld en correct      | CHECK           |
+| DNS ingesteld en correct                  | CHECK            |
+| VM bereikbaar van host                    | FOUT => doordat er nog  geen IP is          |
+| Controleren DNS name resolution          | FOUT             |
 
 #### IP-address
 ##### Config file
@@ -126,7 +124,7 @@ Controleren:
 ```
 $ dig XXXX @192.168.56.42
 ```
-!! Installeer "bind-utils" voor dig, als dit niet mogeijk is gebruik ```getent ahosts www.exampe.be```
+!! Installeer "bind-utils" voor dig, als dit niet mogeijk is gebruik ```getent ahosts www.example.be```
 
 #### Herstarten netwerk na wijzigingen
 Commando:
@@ -137,10 +135,8 @@ systemctl restart network
 #### Fouten in deze fase
 | Fout    | Oplossing |
 | :---    | :---      |
-| Fout 1  |X          |
-| Fout 2  |X          |
-| Fout 3  |X          |
-| ...     |X          |
+| Onboot verkeerd  |Onboot op on zetten en opnieuw opstarten, VM ook bereikbaar van op host   |
+
 
 ### Phase 3: Transport layer
 
@@ -171,10 +167,13 @@ ss -ulnp
 #### Fouten in deze fase
 | Fout    | Oplossing |
 | :---    | :---      |
-| Fout 1  |X          |
-| Fout 2  |X          |
-| Fout 3  |X          |
-| ...     |X          |
+| DNS niet toegevoegd aan firewall  | Toevoegen van dns service aan firewall  |
+
+```
+[vagrant@nginx ~]$ sudo firewall-cmd --add-service=dns --permanent
+[vagrant@nginx ~]$ sudo firewall-cmd --reload
+[vagrant@nginx ~]$ sudo firewall-cmd --list-all
+```
 
 ### Phase 4: Application layer
 
@@ -202,6 +201,14 @@ $ sudo named-checkconf /etc/named.conf
 $ sudo named-checkzone linuxlab.lan /var/named/linuxlab.lan
 $ sudo named-checkzone 15.168.192.in-addr.arpa \ /var/named/15.168.192.in-addr.arpa
 ```
+
+output:
+```
+[root@golbat named]# named-checkzone 192.168.56.in-addr.arpa \ 192.168.56.in-addr.arpa
+zone 192.168.56.in-addr.arpa/IN: loading from master file  192.168.56.in-addr.arpa failed: file not found
+zone 192.168.56.in-addr.arpa/IN: not loaded due to errors.
+
+```
 * Logs bekijken (best in andere terminal)
 ```
 $ sudo rndc querylog on
@@ -221,20 +228,33 @@ Opmerkingen:
 * named.conf verwachtte waarden:
   * listen-on port 53 { 127.0.0.1; **192.168.1.101;**}; // **Master** DNS IP
   * allow-query     { localhost; **192.168.1.0/24;**}; // IP Range
-  *  allow-transfer{ localhost; **192.168.1.102;** };   // **Slave** DNS IP 
+  *  allow-transfer{ localhost; **192.168.1.102;** };   // **Slave** DNS IP
 * Zone naamging => IP-address omdraaien en netwerkgedeelte weglaten
   * 192.168.10.0/24 => 10.168.192.XXXX
 
 #### Fouten in deze fase
 | Fout    | Oplossing |
 | :---    | :---      |
-| Fout 1  |X          |
-| Fout 2  |X          |
-| Fout 3  |X          |
-| ...     |X          |
+| Origin in 56.168.192.in-addr.arpa. is verkeerd   | Moest $ORIGIN 56.168.192.in-addr.arpa. zijn      |
+| Verkeerde IP addresen voor butterfree en beedle    | .12 en .13 omwisselen in cynalco.com en 56.168.192.in-addr.arpa  |
+| Fout in named.conf |Luistert niet op 192.168.56.42 => listen-on port 53 { 127.0.0.1; 192.168.56.42; };|
+| 2de NS server werd niet gevonden  | Toevoegen van NS record in cynalco.com         |
 
 ## End result
 
+```
+[root@golbat vagrant]# ./acceptance_test.bats
+ ✓ Forward lookups private servers
+ ✓ Forward lookups public servers
+ ✓ Reverse lookups private servers
+ ✓ Reverse lookups public servers
+ ✓ Alias lookups private servers
+ ✓ Alias lookups public servers
+ ✓ NS record lookup
+ ✓ Mail server lookup
+
+8 tests, 0 failures
+```
 ## Resources
 
 * [Slides Github](https://hogenttin.github.io/elnx-syllabus/troubleshooting/#/title-slide)
