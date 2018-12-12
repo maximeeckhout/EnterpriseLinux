@@ -8,6 +8,8 @@
     - bertvv.httpd
     - bertvv.mariadb
     - bertvv.wordpress
+    - bertvv.mailserver
+    - nbigot.ansible-fail2ban
 
 # MasterDNS
 - hosts: pu001
@@ -54,3 +56,4 @@
   roles:
     - bertvv.rh-base
     - bertvv.dhcp
+
