@@ -1,4 +1,4 @@
-# Enterprise Linux Lab Report 02
+# Enterprise Linux Extra
 
 - Student name: Maxim Eeckhout
 - Github repo: <https://github.com/HoGentTIN/elnx-1819-sme-maximeeckhout>
@@ -7,8 +7,6 @@ Omschrijving:
 * Fail2Ban
 * Ansible sneller maken
 * Ansible Vault
-
-## Test plan
 
 ## Procedure/Documentation
 
@@ -103,6 +101,18 @@ Om er voor te zorgen dat Vagrant het wachtwoord vraagt bij het runnen van ```vag
 
 ## Test report
 
+### Fail2Ban
+Test: Wanneer men meerdere malen probeert in te loggen met foutieve gegevens zou dit ip address geblokkeerd moeten worden.
+Resultaat:
+
+### Ansible versnellen
+Test: Na de aanpassingen zou Ansible sneller moeten runnen dan de oorspronkelijk.
+Resultaat:
+
+### Ansible Vault
+Test: Alle wachtwoorden worden nu bijhouden volgens het principe van de Ansible Vault.
+Resultaat:
+
 ## Resources
 
 * <https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html>
@@ -110,3 +120,4 @@ Om er voor te zorgen dat Vagrant het wachtwoord vraagt bij het runnen van ```vag
 * <https://adamj.eu/tech/2015/05/18/making-ansible-a-bit-faster/>
 * <https://github.com/nbigot/ansible-fail2ban>
 * <https://acalustra.com/acelerate-your-ansible-playbooks-with-async-tasks.html>
+* <https://docs.ansible.com/ansible/2.4/vault.html>
