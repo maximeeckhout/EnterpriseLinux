@@ -12,72 +12,72 @@ rhbase_users:
       - it
       - users
       - wheel
-    password: '$6$5epL4LO5V8$MJ1fqhDwhDFv3B/xYP2T70whsliqe5b3AO/lbV8.FO.FrXBuaQc0LbGFlnpD5k1Zq2ekVMys6NS4mCkyrM6zl/'
+    password: '{{ maxim }}'
   - name: stevenh
     groups:
       - management
       - users
-    password: '$6$FtP8W801ai64$YVuncHwXuJz.64BQqWTv85AuZuoOV/JAmxyh1Rx6frUEPs8ZFijwBKO8tGSk5hubmkAeFV1OXbI9Kdb3AyJ0K1'
+    password: '{{ stevenh }}'
   - name: stevenv
     groups:
       - users
       - technical
-    password: '$6$Z0N1M5s07a0H$Bb4K5VHiTKD.jxLXKknvilE2C0BfvkOWH6viZV5QClKvMHxapbuDbumkYF7zn8rFm68G/.QU9UEKZRMXLawsN.'
+    password: '{{ stevenv }}'
   - name: leend
     groups:
       - technical
       - users
-    password: '$6$mFnQ0PDTuqOfe9s$8AKOfr01PbkL2q6hv9lFmLOEgc.9or47hpHxlKDXCHgY85z1m0QAa0R7RdITSIjP38RIYg/ft9W23TuZAADHt.'
+    password: '{{ leend }}'
   - name: svena
     groups:
       - sales
       - users
-    password: '$6$zuxk1x1HRFGVcd$6UMds8ENl3YMjJ.BYRqGrEnvZ.umzzFsgoOGxeVfZqqsrs9ZTzDSuVvdIpbKHUH6ojW758klL0Yz45V6zPZGy/'
+    password: '{{ svena }}'
   - name: nehirb
     groups:
       - it
       - users
-    password: '$6$fTGAz6fU/8F$VblmScoikLFn2dBWuM8DDunMW.vS4JOvM6VkzTXzK1XfqiFVEYL9/cISR0/yrha1R/RMw/6a.7NR2mLbcVsQW0'
+    password: '{{ nehirb }}'
   - name: alexanderd
     groups:
       - technical
       - users
-    password: '$6$uyN/EMoCLaVhOxBF$p6/89MsV4Usfkh8goXI/WOO86pFbCk3TeMfaFD30zWgmC2BtEvaRk/e2nlHB4uFXx0/ezqcEORSIj2deRgooq.'
+    password: '{{ alexanderd }}'
   - name: krisv
     groups:
       - management
       - users
-    password: '$6$A2vkx73E$N2dq0gNPh2IHbGSbgFT8FZQ3Csejfw58/chFuLz5fHMM7cOyNGm68KT/j3l/f8oL9ERLPDtj3HbL6P9OnY2tX/'
+    password: '{{ krisv }}'
   - name: benoitp
     groups:
       - sales
       - users
-    password: '$6$2JV9xJNur$sRSGItc75qkBMQ0saeUT4g1LjnjqAWK/1hBrYYuxF0kkqIuq8LabxRwdjQO3P0Wad4UvNWU1rC0APKIo3X8dP0'
+    password: '{{ benoitp }}'
   - name: anc
     groups:
       - technical
       - users
-    password: '$6$PJQBHMMFqe$nKvp6Q8tRPi7maicPYhmmjoBWjFN/MWAVEnsqvLIlTxoqCu4Z9q/mBciD1IrUQ3otT7C4AxNIgO7kG7ROg4h0.'
+    password: '{{ anc }}'
   - name: elenaa
     groups:
       - management
       - users
-    password: '$6$HDaG1NnNMiPofq1$fWSzBgBA3tBPYskNTF2mMrJNJem7QAlqWP/Ua3Peznw6G9EOW0IS/dijtdG5JNnbKUCyRxU3pIbcgP.pg97tK0'
+    password: '{{ elenaa }}'
   - name: evyt
     groups:
       - technical
       - users
-    password: '$6$a7KxIPZ71xbI$4.RRtG2XM8/LRL/EsVC5.9y4eGPEb5YvQl.fp3iOm3OdAM1Moy.99hKGaRihzIQySckItjFFtDkW7B7cMhuYL.'
+    password: '{{ evyt }}'
   - name: christophev
     groups:
       - it
       - users
-    password: '$6$d/yBq64Bxh2UHRER$ZxZ3MQ24.EW4XeBVM4UjPpwc3JLBO9Gyp03xMWlwWYNa6FDaBMeM0wFGs9kY2PvOL8.os.0BztluXz/zUtdw1/'
+    password: '{{ christophev }}'
   - name: stefaanv
     groups:
       - technical
       - users
-    password: '$6$yqx3uIAqrho$E.jxhyhDtjdPizRIPkwk0tx6ZfOkmmfmQnB9LwD9BN.4Z9WmVBcXCz4wxsN0i4pov3crKf3wkqjtjHbwUhhhv0'
+    password: '{{ stefaanv }}'
 
 samba_netbios_name: files
 samba_server_string: 'Welcome to the file server'
@@ -91,33 +91,33 @@ samba_log_level: '3 passdb:5 auth:10 winbind:2 '
 
 samba_users:
   - name: maxim
-    password: maxim
+    password: '{{ maxim }}'
   - name: stevenh
-    password: stevenh
+    password: '{{ stevenh }}'
   - name: stevenv
-    password: stevenv
+    password: '{{ stevenv }}'
   - name: leend
-    password: leend
+    password: '{{ leend }}'
   - name: svena
-    password: svena
+    password: '{{ svena }}'
   - name: nehirb
-    password: nehirb
+    password: '{{ nehirb }}'
   - name: alexanderd
-    password: alexanderd
+    password: '{{ alexanderd }}'
   - name: krisv
-    password: krisv
+    password: '{{ krisv }}'
   - name: benoitp
-    password: benoitp
+    password: '{{ benoitp }}'
   - name: anc
-    password: anc
+    password: '{{ anc }}'
   - name: elenaa
-    password: elenaa
+    password: '{{ elenaa }}'
   - name: evyt
-    password: evyt
+    password: '{{ evyt }}'
   - name: christophev
-    password: christophev
+    password: '{{ christophev }}'
   - name: stefaanv
-    password: stefaanv
+    password: '{{ stefaanv }}'
 
 samba_shares:
   - name: public
@@ -145,13 +145,22 @@ samba_shares:
   - name: sales
     group: sales
     write_list: +sales
-    valid_users: +sales,+management
+    valid_users: +management, +sales
     directory_mode: '0770'
 
 vsftpd_anonymous_enable: false 
 vsftpd_local_enable: true
 vsftpd_write_enable: true
 vsftpd_local_root: /srv/shares
+vsftpd_extra_permissions:
+  - folder: "/srv/shares/sales"
+    entity: "management"
+    etype: "group"
+    permissions: "r-x"
+    folder: "/srv/shares/it"
+    entity: "management"
+    etype: "group"
+    permissions: "r-x"
 
 
 
