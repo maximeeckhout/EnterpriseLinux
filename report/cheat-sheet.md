@@ -111,3 +111,11 @@ sudo dhclient
 | Routing            | `show ip route`                |
 | Show configuration | `show`                         |
 | Show log           | `monitor log`, `show log tail` |
+
+## Ansible Vault
+
+| Action             | Command                        |
+| :---               | :---                           |
+|  Encrypt file      | ansible-vault encrypt wachtwoorden.yml   |
+|  Decrypt file      | ansible-vault decrypt wachtwoorden.yml            |
+|  Edit van file     |ansible-vault edit wachtwoorden.yml |

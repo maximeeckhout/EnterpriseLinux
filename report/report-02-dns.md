@@ -23,6 +23,10 @@ MasterDNS/SlaveDNS:
 * Hosts pu001 en pu002 toevoegen aan 'site.yml' en toevoegen van de rol bertvv.bind
 * Installeren van de rol bertvv.bind
 * Aanpassen van de variabelen van de rol
+ * Alle hosts Toevoegen
+ * DNS service toestaan voor firewall
+ * Zone master ip Instellen
+ * Allow query toelaten
 
 ## Test report
 

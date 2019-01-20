@@ -19,13 +19,28 @@ Opmerking: Destroy de VM voor het uitvoeren van de testen.
 
 ## Procedure/Documentation
 
-Describe *in detail* how you completed the assignment, with main focus on the "manual" work. It is of course not necessary to copy/paste your code in this document, but you can refer to it with a hyperlink.
-
-Make sure to write clean Markdown code, so your report looks good and is clearly structured on Github.
+1. Download de rol bertvv.dhcp en bertvv.rh-base
+2. Voeg de rol en de nieuwe vm toe aan site.yml
+```
+# DHCPServer
+- hosts: pr001
+  become: true
+  roles:
+    - bertvv.rh-base
+    - bertvv.dhcp
+```
+3. Configureer DHCP via de variabelen van de rollen.
+ * Range maken met IP's
+ * Specifieke IP uitdelen via MAC adres
+ 
+4. Configureer de router in het script: "router-config.sh"
 
 ## Test report
 
-The test report is a transcript of the execution of the test plan, with the actual results. Significant problems you encountered should also be mentioned here, as well as any solutions you found. The test report should clearly prove that you have met the requirements.
+We zien dat we de verwachte waarden krijgen bij de 2 netwerkkaarten. Verder is het ook mogelijk om naar <http://www.avalon.lan> als naar <http://www.google.be> te surfen. Ook de fileserver is bereikbaar.
+![DHCP](pictures/client_dhcp.png)
+![Shares](pictures/shares.png)
+
 
 ## Resources
 
