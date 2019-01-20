@@ -7,12 +7,31 @@ Omschrijving:
 * Fail2Ban
 * Ansible sneller maken
 * Ansible Vault
+* Ansible Role
 
-## Procedure/Documentation
+## Procedure
 
 ### Fail2Ban
 
-Deze rol voegen we toe aan pu004 zodat we deze beter kunnen beveiligen.
+Deze rol voegen we toe aan pu004 zodat we deze beter kunnen beveiligen. Fail2Ban beveiligt de toegang tot de server via ssh. Na 3 foutieve login poginen zal het ip tijdelijke geblokkeerd worden.
+
+```
+# LAMP
+- hosts: pu004
+  become: true
+  roles:
+    - bertvv.rh-base
+    - bertvv.httpd
+    - bertvv.mariadb
+    - bertvv.wordpress
+    - nbigot.ansible-fail2ban
+```
+
+Verder configuration van de rol kan via die parameters of in de files:
+* ```/etc/fail2ban/jail.conf```
+* ```/etc/fail2ban/jail.local```
+
+De log files vinden we terug in ```/var/log/fail2ban.log```
 
 ### Ansible versnellen
 
@@ -87,31 +106,49 @@ New Vault password:
 Confirm New Vault password:
 Encryption successful
 ```
-Om er voor te zorgen dat Vagrant het wachtwoord vraagt bij het runnen van ```vagrant up``` passen we de vagrant file aan:
+Om er voor te zorgen dat Vagrant het wachtwoord niet steeds vraagt bij het runnen van ```vagrant up``` passen we de vagrant file aan en gebruiken we een file die het wachtwoord van de vault bevat:
 ```
 # Provisioning configuration for Ansible (for Mac/Linux hosts).
   config.vm.provision ansible_mode do |ansible|
     ansible.playbook = host.key?('playbook') ?
         "ansible/#{host['playbook']}" :
         "ansible/site.yml"
-    ansible.become = true
+    ansible.vault_password_file = 'password.txt'
     ansible.compatibility_mode = '2.0'
     ansible.ask_vault_pass = true
 ```
+
+Opmerking: Om echt goed te werken is het natuurlijk de bedoeling dat deze 'password.txt' file niet op Github komt, hier is dus nu wel voor gebruiksgemak.
+
+### Ansible Role
+
+![Dashbord](pictures/datadog)
+
+Ik heb een rol geschreven die het makkelijkt maakt om enkele parameters te monitoren van je server. Via Datadog kan je een handig dashbord maken waarin je in grafieken de status van je server kan bekijken. Verder kan je hier ook uitbreiden door bijvoorbeeld te gaan monitoren op anomalieën, zo kan je een waarschuwing krijgen als je CPU onverwacht hoge waarden aanneemt.
+
+![Mail](pictures/mail_datadog.jpg)
+
+Ansible Role Documentatie:
+* [Github](https://github.com/maximeeckhout/datadog)
+* [Ansible Galaxy](https://galaxy.ansible.com/maximeeckhout/datadog)
+
+In mijn opdracht heb ik deze rol toegekend aan pu001.
 
 ## Test report
 
 ### Fail2Ban
 Test: Wanneer men meerdere malen probeert in te loggen met foutieve gegevens zou dit ip address geblokkeerd moeten worden.
-Resultaat:
+Resultaat: Zoals de screenshot aantoont is het eerste mogelijk om in te loggen met het correcte wachtwoorden, na 3 foutieve pogingen is dit echter niet meer mogelijk.
+
+![Fail2Ban](pictures/fail2ban)
 
 ### Ansible versnellen
 Test: Na de aanpassingen zou Ansible sneller moeten runnen dan de oorspronkelijk.
-Resultaat:
+Resultaat: We zien duidelijk in bovenstaande screenshot dat Ansible sneller geworden is.
 
 ### Ansible Vault
 Test: Alle wachtwoorden worden nu bijhouden volgens het principe van de Ansible Vault.
-Resultaat:
+Resultaat: De file ```ansible/vars/wachtwoorden.yml``` is nu op Github niet meer leesbaar, de wachtwoorden zijn dus verborgen.
 
 ## Resources
 
