@@ -91,33 +91,33 @@ samba_log_level: '3 passdb:5 auth:10 winbind:2 '
 
 samba_users:
   - name: maxim
-    password: '{{ maxim }}'
+    password: maxim 
   - name: stevenh
-    password: '{{ stevenh }}'
+    password: stevenh
   - name: stevenv
-    password: '{{ stevenv }}'
+    password: stevenv
   - name: leend
-    password: '{{ leend }}'
+    password: leend
   - name: svena
-    password: '{{ svena }}'
+    password: svena
   - name: nehirb
-    password: '{{ nehirb }}'
+    password: nehirb
   - name: alexanderd
-    password: '{{ alexanderd }}'
+    password: alexanderd
   - name: krisv
-    password: '{{ krisv }}'
+    password: krisv
   - name: benoitp
-    password: '{{ benoitp }}'
+    password: benoitp
   - name: anc
-    password: '{{ anc }}'
+    password: anc
   - name: elenaa
-    password: '{{ elenaa }}'
+    password: elenaa
   - name: evyt
-    password: '{{ evyt }}'
+    password: evyt
   - name: christophev
-    password: '{{ christophev }}'
+    password: christophev
   - name: stefaanv
-    password: '{{ stefaanv }}'
+    password: stefaanv
 
 samba_shares:
   - name: public
@@ -157,7 +157,7 @@ vsftpd_extra_permissions:
     entity: "management"
     etype: "group"
     permissions: "r-x"
-    folder: "/srv/shares/it"
+  - folder: "/srv/shares/it"
     entity: "management"
     etype: "group"
     permissions: "r-x"

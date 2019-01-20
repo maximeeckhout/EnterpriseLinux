@@ -13,9 +13,12 @@
 # MasterDNS
 - hosts: pu001
   become: true
+  vars:
+   - api_key: '0643a14d6101fda2f54f507d23732fcc'
   roles:
     - bertvv.rh-base
     - bertvv.bind
+    - maximeeckhout.datadog
 
 #SlaveDNS
 - hosts: pu002
@@ -40,4 +43,5 @@
   roles:
     - bertvv.rh-base
     - bertvv.dhcp
+
 

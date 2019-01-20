@@ -12,6 +12,7 @@ rhbase_install_packages:
 
 rhbase_ssh_user: maxim
 rhbase_ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDnw7NjkgmlGQyE/DvLFcl35ifMTL+UjqqY1eNBIkYM3aWh5k/YvbPIfjg0SMgKbPsRpLJyYj+06ARePZD/ZMgQDrrSIcDvtLQd9yPHUus1Hc6vpAIj35CF26TuqFEFjnJeptJuDApKAD4jfq5SfqK5kipxvjfFX+cil0ooctyawBZ+TudrPm2xnGmN+iWM8m/cHkpafkjF0Z0/oF8276GGluDxZFzPjjodxuqryQZ6LDsdwXyzCJzPC2r4XajfASFpGxRT/THxjxMbxx7exhGHr3vdqadMvHmClzuN0hV7m99t8KKf/9PW+++rLs3Wq4oF4MQKeg7XrG+rh8QFrAM3 meeckhout@Dell-Maxim'
+
 rhbase_users:
   - name: maxim
     groups:
@@ -19,7 +20,7 @@ rhbase_users:
       - users
     password: '$6$qTNUcoNx3p.5$JAOLjzO7C/tlN.122wvQZfZXKUCpGzvXPTlWNTreRmmhgMkrgCGVzvfKxBEJ61CHx/p1XlMPFcU.NhP7KlBeE/'
 
-rhbase_ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDnw7NjkgmlGQyE/DvLFcl35ifMTL+UjqqY1eNBIkYM3aWh5k/YvbPIfjg0SMgKbPsRpLJyYj+06ARePZD/ZMgQDrrSIcDvtLQd9yPHUus1Hc6vpAIj35CF26TuqFEFjnJeptJuDApKAD4jfq5SfqK5kipxvjfFX+cil0ooctyawBZ+TudrPm2xnGmN+iWM8m/cHkpafkjF0Z0/oF8276GGluDxZFzPjjodxuqryQZ6LDsdwXyzCJzPC2r4XajfASFpGxRT/THxjxMbxx7exhGHr3vdqadMvHmClzuN0hV7m99t8KKf/9PW+++rLs3Wq4oF4MQKeg7XrG+rh8QFrAM3 meeckhout@Dell-Maxim'
+
 #rhbase_firewall_allow_services:
 #  - http
 #  - https

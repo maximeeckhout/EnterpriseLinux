@@ -47,7 +47,7 @@ def provision_ansible(config, host)
         "ansible/site.yml"
     ansible.become = true
     ansible.compatibility_mode = '2.0'
-    ansible.ask_vault_pass = true
+    ansible.vault_password_file = 'password.txt'
   end
 end
 

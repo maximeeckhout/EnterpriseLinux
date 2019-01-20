@@ -1,8 +1,6 @@
 rhbase_firewall_allow_services:
   - http
   - https
-  - pop3s
-  - imaps
 rhbase_firewall_allow_ports:
   - 587/tcp
   - 465/tcp
@@ -22,8 +20,4 @@ wordpress_user: wordpress_usr
 wordpress_password: wordpress
 
 fail2ban_loglevel: 3
-fail2ban_sendername: MaximEeckhout
-fail2ban_sender: maximeeckhout@hotmail.com
-fail2ban_destemail: maximeeckhout@hotmail.com
-
 
